@@ -479,4 +479,28 @@ PRODUCT_PACKAGES += \
 
 # ZRAM - Size in MB
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.zram.size=128
+    ro.config.zram.size=384
+
+# OpenGL
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.renderer=opengl
+
+# Memory optimization
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.am.reschedule_service=true \
+    ro.vendor.qti.sys.fw.bservice_enable=true \
+    dalvik.vm.madvise-random=true \
+    ro.lmk.low=1001 \
+    ro.lmk.medium=0 \
+    ro.lmk.critical=800 \
+    ro.lmk.critical_upgrade=false \
+    ro.lmk.upgrade_pressure=100 \
+    ro.lmk.downgrade_pressure=100 \
+    ro.lmk.kill_heaviest_task=true \
+    ro.lmk.kill_timeout_ms=15 \
+    ro.lmk.use_minfree_levels=true \
+    ro.lmk.enhance_batch_kill=true \
+    ro.lmk.vmpressure_file_min=80640
+
+# Go property
+$(call inherit-product, $(LOCAL_PATH)/go_msm8916-common.mk)
