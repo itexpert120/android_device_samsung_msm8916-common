@@ -160,6 +160,7 @@ BOARD_KERNEL_CMDLINE += \
 	msm_rtb.filter=0x3F \
 	ehci-hcd.park=3 \
 	androidboot.bootdevice=7824900.sdhci \
+	pm.sleep_mode=1 \
 	androidboot.selinux=permissive
 
 
