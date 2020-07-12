@@ -115,11 +115,11 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    camera2.portability.force_api=1
+    snap.portability.force_api=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_treble=true \
-    camera2.portability.force_api=1 \
+    snap.portability.force_api=1 \
     debug.camcorder.disablemeta=true
 
 # Camera
@@ -129,6 +129,15 @@ PRODUCT_PACKAGES += \
     libcamera_shim \
     libmm-qcamera \
     camera.msm8916
+
+# Chipname
+ifeq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8929)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.chipname=MSM8929
+else ifeq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8939)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.chipname=MSM8939
+endif
 
 # Connectivity Engine
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -160,12 +169,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.netmgrd.qos.enable=false \
     ro.use_data_netmgrd=false
 
-# Dex
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    TrebuchetQuickStep \
-    Settings \
-    SystemUI
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
@@ -190,6 +193,9 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     libebtc
+
+# Exclude AudioFX
+TARGET_EXCLUDES_AUDIOFX := true
 
 # FM
 PRODUCT_PACKAGES += \
@@ -500,4 +506,14 @@ PRODUCT_PACKAGES += \
 
 # ZRAM - Size in MB
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.zram.size=128
+    ro.config.zram.size=384
+
+# OpenGL
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.renderer=opengl
+
+# Memory optimization
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.am.reschedule_service=true \
+    ro.vendor.qti.sys.fw.bservice_enable=true \
+    dalvik.vm.madvise-random=true
