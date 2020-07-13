@@ -114,11 +114,11 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    snap.portability.force_api=1
+    camera2.portability.force_api=1
 
 PRODUCT_PROPERTY_OVERRIDES += \
     camera.disable_treble=true \
-    snap.portability.force_api=1 \
+    camera2.portability.force_api=1 \
     debug.camcorder.disablemeta=true
 
 # Camera
@@ -524,9 +524,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Performance
 RODUCT_PROPERTY_OVERRIDES += \
    ro.config.avoid_gfx_accel=true \
-   ro.config.max_starting_bg=8 \
-   ro.vendor.extension_library=libqti-perfd-client.so \
-   ro.core_ctl_min_cpu=0 \
-   ro.core_ctl_max_cpu=4 \
-   ro.min_freq_0=800000
+   ro.vendor.extension_library=libqti-perfd-client.so
 

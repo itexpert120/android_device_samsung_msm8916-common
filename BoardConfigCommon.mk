@@ -298,9 +298,9 @@ PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-im
 PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-	   		      TrebuchetQuickStep \
-	   		      Settings \
-   	   		      SystemUI
+    TrebuchetQuickStep \
+    Settings \
+    SystemUI
 
 # Set default locale
 PRODUCT_LOCALES := en-GB
