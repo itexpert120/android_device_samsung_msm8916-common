@@ -391,7 +391,7 @@ on fs
     wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
 
-    mount_all fstab.qcom
+    mount_all fstab.qcom --early
 
     chown system radio /efs
     chmod 0771 /efs
@@ -401,6 +401,18 @@ on fs
 # fm_radio
     chmod 0777 /dev/radio0
     chown system system /dev/radio0
+
+    # Start HW service manager early
+    start hwservicemanager
+
+on late-fs
+    # Start services for bootanim
+    start vendor.configstore-hal
+    start surfaceflinger
+    start bootanim
+    start vendor.gralloc-2-0
+
+    mount_all fstab.qcom --late
 
 # msm specific files that need to be created on /data
 on post-fs-data
