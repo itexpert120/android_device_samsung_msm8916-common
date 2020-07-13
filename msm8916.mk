@@ -33,6 +33,10 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opa.eligible_device=true
 
+# Advance Display
+PRODUCT_PACKAGES += \
+    AdvancedDisplay
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
