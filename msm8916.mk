@@ -40,7 +40,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@2.0-impl \
     android.hardware.audio.effect@2.0-service \
     android.hardware.broadcastradio@1.0-impl \
-    android.hardware.soundtrigger@2.0-impl \
     audio.a2dp.default \
     audio.primary.msm8916 \
     audio.primary.default \
@@ -160,12 +159,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.netmgrd.qos.enable=false \
     ro.use_data_netmgrd=false
 
-# Dex
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    TrebuchetQuickStep \
-    Settings \
-    SystemUI
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
@@ -190,6 +183,9 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     libebtc
+
+# Exclude AudioFX
+TARGET_EXCLUDES_AUDIOFX := true
 
 # FM
 PRODUCT_PACKAGES += \
@@ -500,4 +496,22 @@ PRODUCT_PACKAGES += \
 
 # ZRAM - Size in MB
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.zram.size=128
+    ro.config.zram.size=384
+
+# Reduced power consumption
+PRODUCT_PROPERTY_OVERRIDES += \
+   ro.audio.flinger_standbytime_ms=300
+
+# OpenGL
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwui.renderer=opengl
+
+# Memory optimization
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.am.reschedule_service=true \
+    ro.vendor.qti.sys.fw.bservice_enable=true \
+    dalvik.vm.madvise-random=true \
+    ro.vendor.extension_library=libqti-perfd-client.so \
+    ro.core_ctl_min_cpu=0 \
+    ro.core_ctl_max_cpu=4 \
+    ro.min_freq_0=800000
