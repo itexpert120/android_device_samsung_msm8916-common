@@ -511,12 +511,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.hwui.renderer=opengl
 
+# Display Opt
+PRODUCT_PROPERTY_OVERRIDES += \
+   debug.sf.enable_gl_backpressure=1
+
 # Memory optimization
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.qti.am.reschedule_service=true \
     ro.vendor.qti.sys.fw.bservice_enable=true \
-    dalvik.vm.madvise-random=true \
     ro.vendor.extension_library=libqti-perfd-client.so \
     ro.core_ctl_min_cpu=0 \
     ro.core_ctl_max_cpu=4 \
     ro.min_freq_0=800000
+
+# LMK
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lmk.medium=700 \
+    dalvik.vm.madvise-random=true 
