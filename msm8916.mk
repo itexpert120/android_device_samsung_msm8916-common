@@ -248,9 +248,8 @@ PRODUCT_VENDOR_KERNEL_HEADERS := \
 DEVICE_MANIFEST_FILE := \
     $(LOCAL_PATH)/manifest.xml
 
+
 PRODUCT_PACKAGES += \
-    android.hidl.base@1.0 \
-    android.hidl.manager@1.0 \
     android.hidl.manager@1.0-java
 
 # Keylayout
