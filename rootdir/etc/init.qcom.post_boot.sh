@@ -563,3 +563,53 @@ case "$target" in
         echo $oem_version > /sys/devices/soc0/image_crm_version
         ;;
 esac
+
+# ZXKernel Defaults
+function ZXKernelLogcat() {
+	log -p i -t "ZXKernel" $1;
+}
+
+# Fixing Permissinos for LMK
+ZXLogcat "Fixing permissions...";
+chmod 666 /sys/module/lowmemorykiller/parameters/minfree;
+chown root:system /sys/module/lowmemorykiller/parameters/minfree;
+for i in `seq 0 3`; do
+	chmod 644 /sys/devices/system/cpu/cpu$i/online;
+done;
+
+# Setting Governor on Boot
+ZXLogcat "Setting CPU parameters (governor)...";
+for i in `seq 0 3`; do
+	echo "blu_active" > /sys/devices/system/cpu/cpu$i/cpufreq/scaling_governor;
+done;
+
+# Changing Governor Values
+ZXLogcat "Setting CPU parameters (governor settings)...";
+echo "19000 1248000:29000" > /sys/devices/system/cpu/cpufreq/blu_active/above_hispeed_delay;
+echo "85" > /sys/devices/system/cpu/cpufreq/blu_active/go_hispeed_load;
+echo "1248000" > /sys/devices/system/cpu/cpufreq/blu_active/hispeed_freq;
+echo "85 1248000:80" > /sys/devices/system/cpu/cpufreq/blu_active/target_loads;
+echo "30000" > /sys/devices/system/cpu/cpufreq/blu_active/timer_rate;
+echo "60000" > /sys/devices/system/cpu/cpufreq/blu_active/timer_slack;
+
+# Enabling MSM Limiter
+ZXLogcat "Setting CPU parameters (MSM Limiter)...";
+echo "1" > /sys/kernel/msm_limiter/limiter_enabled;
+
+# Enabling Simple Thermal Driver
+ZXLogcat "Enabling Simple Thermal...";
+echo "1" > /sys/kernel/msm_thermal/enabled;
+
+# Adjusting LMK
+ZXLogcat "Adjusting LMK values...";
+echo "8192,10240,12288,14336,21504,30720" > /sys/module/lowmemorykiller/parameters/minfree;
+
+# Tweaking I/O Schedulers
+ZXLogcat "Applying I/O scheduling tweaks...";
+echo "128" > /sys/block/mmcblk0/queue/read_ahead_kb;
+echo "512" > /sys/block/mmcblk1/queue/read_ahead_kb;
+
+# Entropy Tweaks
+ZXLogcat "Adjusting entropy values...";
+echo "128" > /proc/sys/kernel/random/read_wakeup_threshold;
+echo "256" > /proc/sys/kernel/random/write_wakeup_threshold;
