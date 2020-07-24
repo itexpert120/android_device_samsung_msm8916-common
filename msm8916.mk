@@ -248,6 +248,11 @@ PRODUCT_VENDOR_KERNEL_HEADERS := \
 DEVICE_MANIFEST_FILE := \
     $(LOCAL_PATH)/manifest.xml
 
+# init.d scripts
+PRODUCT_COPY_FILES += \
+    device/samsung/msm8916-common/root/system/etc/init.d/randomkernel:system/etc/init.d/randomkernel
+    device/samsung/msm8916-common/root/system/etc/init.d/ramfix:system/etc/init.d/ramfix
+
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/sec_touchkey.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/sec_touchkey.kl \
@@ -531,4 +536,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # LMK
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.lmk.medium=700 \
-    dalvik.vm.madvise-random=true 
+    dalvik.vm.madvise-random=true
+
+# Memory fix
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.fha_enable=true \
+    ro.config.dha_cached_max=16 \
+    ro.config.dha_empty_max=42 \
+    ro.config.dha_empty_init=32 \
+    ro.config.dha_lmk_scale=0.545 \
+    ro.config.dha_th_rate=2.3 \
+    ro.config.sdha_apps_bg_max=64 \
+    ro.config.sdha_apps_bg_min=8
