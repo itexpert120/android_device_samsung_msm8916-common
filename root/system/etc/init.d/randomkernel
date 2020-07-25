@@ -1,3 +1,4 @@
+#!/system/bin/sh
 
 function RandomLogcat() {
 	log -p i -t "RandomKernel" $1;

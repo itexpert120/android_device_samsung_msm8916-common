@@ -1,3 +1,5 @@
+#!/system/bin/sh
+
 stop perfd
 echo '0' > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 echo '80' > /proc/sys/vm/overcommit_ratio
