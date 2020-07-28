@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017-2018 The LineageOS Project
+# Copyright (C) 2017-2018 The AOSP Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -79,8 +79,6 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
 BLUETOOTH_HCI_USE_MCT := true
 
-# Bootanimation
-
 # Bootloader
 BOARD_PROVIDES_BOOTLOADER_MESSAGE := false
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
@@ -99,11 +97,6 @@ BOARD_CHARGER_ENABLE_SUSPEND    := true
 BOARD_CHARGER_SHOW_PERCENTAGE   := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
-# CMHW
-#BOARD_USES_CYANOGEN_HARDWARE := true
-JAVA_SOURCE_OVERLAYS += \
-	org.lineageos.hardware|hardware/samsung/lineagehw|**/*.java \
-	org.lineageos.hardware|$(LOCAL_PATH)/lineagehw|**/*.java
 
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024

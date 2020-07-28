@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017-2018 The LineageOS Project
+# Copyright (C) 2017-2018 The AOSP Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,16 +26,11 @@ LOCAL_PATH := device/samsung/msm8916-common
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay
 
 # Assistant
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opa.eligible_device=true
-
-# Advance Display
-PRODUCT_PACKAGES += \
-    AdvancedDisplay
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -175,8 +170,7 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libtinyxml \
     libtinyxml2 \
-    memtrack.msm8916 \
-    vendor.lineage.livedisplay@1.0-service-legacymm
+    memtrack.msm8916
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -376,9 +370,7 @@ PRODUCT_COPY_FILES += \
 
 # Power HAL
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-impl \
-    android.hardware.power@1.0-service \
-    power.qcom
+    android.hardware.power@1.1-service-qti
 
 # Radio
 PRODUCT_PACKAGES += \
@@ -464,10 +456,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # USB HAL
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
-
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2017-09-01
 
 # Vibrator
 PRODUCT_PACKAGES += \
