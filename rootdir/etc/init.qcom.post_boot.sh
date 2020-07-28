@@ -47,6 +47,8 @@ function configure_memory_parameters() {
 ProductName=`getprop ro.product.name`
 
 if [ "$ProductName" == "msm8909_512" ] || [ "$ProductName" == "msm8909w" ]; then
+      echo "8192,11264,14336,17408,20480,26624" > /sys/module/lowmemorykiller/parameters/minfree
+      echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
       echo 32768 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 else
     arch_type=`uname -m`
@@ -75,14 +77,17 @@ else
     if [ "$arch_type" == "aarch64" ] && [ $MemTotal -gt 1048576 ]; then
         echo 10 > /sys/module/process_reclaim/parameters/pressure_min
         echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
+        echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
         echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
     elif [ "$arch_type" == "aarch64" ] && [ $MemTotal -lt 1048576 ]; then
         echo 50 > /sys/module/process_reclaim/parameters/pressure_min
         echo 512 > /sys/module/process_reclaim/parameters/per_swap_size
+        echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
         echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
     else
         echo 50 > /sys/module/process_reclaim/parameters/pressure_min
         echo 512 > /sys/module/process_reclaim/parameters/per_swap_size
+        echo "15360,19200,23040,26880,34415,43737" > /sys/module/lowmemorykiller/parameters/minfree
         echo 53059 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
     fi
 
@@ -212,6 +217,7 @@ case "$target" in
                 # disable thermal core_control to update scaling_min_freq
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
                 echo 1 > /sys/devices/system/cpu/cpu0/online
+                echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 
                 echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/max_cpus
@@ -255,6 +261,7 @@ case "$target" in
                 # disable thermal core_control to update scaling_min_freq, interactive gov
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
                 echo 1 > /sys/devices/system/cpu/cpu0/online
+                echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
                 # enable thermal core_control now
                 echo 1 > /sys/module/msm_thermal/core_control/enabled
@@ -321,6 +328,7 @@ case "$target" in
 
                 # enable governor for perf cluster
                 echo 1 > /sys/devices/system/cpu/cpu0/online
+                echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 echo "20000 1113600:50000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                 echo 85 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
                 echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
@@ -333,6 +341,7 @@ case "$target" in
 
                 # enable governor for power cluster
                 echo 1 > /sys/devices/system/cpu/cpu4/online
+                echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
                 echo "25000 800000:50000" > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                 echo 90 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
                 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
@@ -426,6 +435,7 @@ case "$target" in
 
                 # enable governor for perf cluster
                 echo 1 > /sys/devices/system/cpu/cpu0/online
+                echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 echo "19000 1113600:39000" > /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
                 echo 85 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
                 echo 20000 > /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
@@ -438,6 +448,7 @@ case "$target" in
 
                 # enable governor for power cluster
                 echo 1 > /sys/devices/system/cpu/cpu4/online
+                echo "interactive" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
                 echo 39000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay
                 echo 90 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load
                 echo 20000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate
