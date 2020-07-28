@@ -251,7 +251,6 @@ DEVICE_MANIFEST_FILE := \
 # init.d scripts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/root/system/etc/init.d/ramfix:system/etc/init.d/ramfix
-    $(LOCAL_PATH)/root/system/etc/init.d/randomkernel:system/etc/init.d/randomkernel
 
 # Keylayout
 PRODUCT_COPY_FILES += \
