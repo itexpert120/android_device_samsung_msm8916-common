@@ -823,3 +823,10 @@ on class_start:late_start
 
 on property:init.svc.recovery=running
     trigger enable-low-power
+
+# PPD Service for livedisplay
+service ppd /vendor/bin/mm-pp-daemon
+    class hal
+    user system
+    socket pps stream 0660 system system
+    group system graphics
