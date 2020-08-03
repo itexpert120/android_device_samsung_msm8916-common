@@ -613,3 +613,23 @@ echo "1248000" > /sys/devices/system/cpu/cpufreq/blu_active/hispeed_freq
 echo "85 1248000:80" > /sys/devices/system/cpu/cpufreq/blu_active/target_loads
 echo "30000" > /sys/devices/system/cpu/cpufreq/blu_active/timer_rate
 echo "60000" > /sys/devices/system/cpu/cpufreq/blu_active/timer_slack
+
+# Fix Cores
+#
+echo 1 > /sys/block/zram0/reset
+echo lz4 > /sys/block/zram0/comp_algorithm
+echo 512M >/sys/block/zram0/disksize
+#
+#Fix suddenly reboot issue
+#
+echo 1 > /sys/bus/cpu/devices/cpu0/core_ctl/min_cpus
+echo "0 0 0 0" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_down_thres
+echo "0 0 0 0" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_up_thres
+sleep 3
+echo "80 80 80 80" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_up_thres
+#
+#cpu_freq
+#
+sleep 5
+echo 1612000 >/sys/bus/cpu/devices/cpu0/cpufreq/scaling_max_freq
+echo 200000 >/sys/bus/cpu/devices/cpu0/cpufreq/scaling_min_freq
