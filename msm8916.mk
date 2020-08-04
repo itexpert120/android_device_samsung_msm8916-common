@@ -417,7 +417,8 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.recovery.qcom.rc \
     twrp.fstab \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    init.safailnet.rc
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \
