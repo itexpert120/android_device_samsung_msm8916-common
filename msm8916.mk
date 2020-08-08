@@ -219,7 +219,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Surface Flinger
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
 
 # GPS Configs
 PRODUCT_COPY_FILES += \
@@ -519,12 +520,12 @@ PRODUCT_PACKAGES += \
 
 # ZRAM - Size in MB
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.zram.size=384
+   ro.config.zram.size=1024
 
 # SafetyNet Fix
-    BUILD_FINGERPRINT := "google/coral/coral:10/QQ3A.200705.002/6506677:user/release-keys"
+BUILD_FINGERPRINT := "google/coral/coral:10/QQ3A.200705.002/6506677:user/release-keys"
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.build.fingerprint=$(BUILD_FINGERPRINT)
+   ro.build.fingerprint=$(BUILD_FINGERPRINT)
 
 # Reduced power consumption
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -532,34 +533,33 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # OpenGL
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.hwui.renderer=opengl
+   debug.hwui.renderer=opengl
 
 # Display Opt
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.sf.enable_gl_backpressure=1 \
-    debug.cpurend.vsync
+   debug.sf.enable_gl_backpressure=1 \
+   debug.cpurend.vsync=0
 
 # Memory optimization
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qti.am.reschedule_service=true \
-    ro.vendor.qti.sys.fw.bservice_enable=true \
-    ro.vendor.extension_library=libqti-perfd-client.so \
-    ro.core_ctl_min_cpu=0 \
-    ro.core_ctl_max_cpu=4 \
-    ro.min_freq_0=800000
+   ro.vendor.qti.am.reschedule_service=true \
+   ro.vendor.qti.sys.fw.bservice_enable=true \
+   ro.vendor.extension_library=libqti-perfd-client.so \
+   ro.core_ctl_min_cpu=0 \
+   ro.core_ctl_max_cpu=4 \
+   ro.min_freq_0=800000
 
 # LMK
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lmk.medium=700 \
-    dalvik.vm.madvise-random=true
+   dalvik.vm.madvise-random=true
 
 # Memory fix
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.fha_enable=true \
-    ro.config.dha_cached_max=16 \
-    ro.config.dha_empty_max=42 \
-    ro.config.dha_empty_init=32 \
-    ro.config.dha_lmk_scale=0.545 \
-    ro.config.dha_th_rate=2.3 \
-    ro.config.sdha_apps_bg_max=64 \
-    ro.config.sdha_apps_bg_min=8
+   ro.config.fha_enable=true \
+   ro.config.dha_cached_max=16 \
+   ro.config.dha_empty_max=42 \
+   ro.config.dha_empty_init=32 \
+   ro.config.dha_lmk_scale=0.545 \
+   ro.config.dha_th_rate=2.3 \
+   ro.config.sdha_apps_bg_max=64 \
+   ro.config.sdha_apps_bg_min=8
