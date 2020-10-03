@@ -33,10 +33,6 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opa.eligible_device=true
 
-# Advance Display
-PRODUCT_PACKAGES += \
-    AdvancedDisplay
-
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
@@ -520,7 +516,7 @@ PRODUCT_PACKAGES += \
 
 # ZRAM - Size in MB
 PRODUCT_PROPERTY_OVERRIDES += \
-   ro.config.zram.size=1024
+   ro.config.zram.size=512
 
 # SafetyNet Fix
 BUILD_FINGERPRINT := "google/coral/coral:10/QQ3A.200705.002/6506677:user/release-keys"
