@@ -21,7 +21,9 @@ TARGET_SPECIFIC_HEADER_PATH += $(COMMON_PATH)/include
 # Inherit from common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
 
+# Allow overriding commands during build
 BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_PHONY_TARGETS := true
 
 # Architecture/platform
 BOARD_VENDOR := samsung
