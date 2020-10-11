@@ -151,7 +151,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl-legacy \
     libcamera_shim \
     libmm-qcamera \
-    camera.msm8916
+    camera.msm8916 \
+    Snap
 
 # Chipname
 ifeq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8929)
