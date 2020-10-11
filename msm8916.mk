@@ -484,6 +484,10 @@ PRODUCT_ENFORCE_RRO_TARGETS := \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
 
+# System.prop tweaks
+TARGET_SYSTEM_PROP += \
+    device/samsung/msm8916-common/system.prop
+
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_long_ons_0="" \

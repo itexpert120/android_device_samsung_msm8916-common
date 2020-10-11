@@ -1,0 +1,165 @@
+#
+# Tweaks for Grand Prime
+#
+
+# RAM optimizations
+config.disable_atlas=true
+ro.sys.fw.trim_enable_memory=805306368
+ro.sys.fw.use_trim_settings=true
+ro.sys.fw.empty_app_percent=25
+ro.sys.fw.trim_empty_percent=50
+ro.sys.fw.trim_cache_percent=50
+ro.sys.fw.bg_apps_limit=32
+ro.sys.fw.bservice_limit=7
+ro.sys.fw.bservice_age=6000
+ro.sys.fw.bservice_enable=true
+
+# hwui
+ro.hwui.drop_shadow_cache_size=1
+ro.hwui.gradient_cache_size=0.2
+ro.hwui.layer_cache_size=6
+ro.hwui.path_cache_size=2
+ro.hwui.r_buffer_cache_size=1
+ro.hwui.texture_cache_size=8
+
+# Improve battery 
+wifi.supplicant_scan_interval=240
+pm.sleep_mode=4
+
+# Rendering Tweaks
+debug.composition.type=c2d
+debug.egl.hw=1
+debug.enabletr=true
+debug.overlayui.enable=1
+debug.qctwa.preservebuf=1
+debug.performance.tuning=1
+debug.sf.hw=1
+dev.pm.dyn_samplingrate=1
+hw3d.force=1
+ro.config.disable.hw_accel=false
+ro.fb.mode=1
+ro.sf.compbypass.enable=0
+ro.vold.umsdirtyratio=20
+persist.sys.composition.type=c2d
+persist.sys.ui.hw=1
+video.accelerate.hw=1
+
+# Enable GPU Acceleration
+debug.sf.hw=1
+video.accelerate.hw=1
+debug.performance.tuning=1
+persist.sys.composition.type=gpu
+debug.qc.hardware=true
+debug.qctwa.statusbar=1
+debug.qctwa.preservebuf=1
+debug.egl.profiler=1
+debug.egl.hw=1
+debug.composition.type=gpu
+hw3d.force=1
+ro.product.gpu.driver=1
+persist.sys.use_16bpp_alpha=1
+persist.sampling_profiler=0
+hwui.render_dirty_regions=false
+hwui.disable_vsync=true
+
+# Saves some battery without reducing performances
+wifi.supplicant_scan_interval=497
+pm.sleep_mode=4
+power.saving.mode=1
+ro.ril.disable.power.collapse=0
+ro.vold.umsdirtyratio=20
+
+# Battery save
+ro.ril.disable.power.collapse=0
+profiler.force_disable_err_rpt=1
+profiler.force_disable_ulog=1
+dalvik.vm.checkjni=false
+dalvik.vm.execution-mode=int:jit
+ro.ril.power_collapse=1
+power_supply.wakeup=enable
+ro.config.hw_fast_dormancy=1
+ro.config.hw_power_saving=1
+
+# Reduce dial-out time
+ro.telephony.call_ring.delay=0
+
+# Allow purge of assets to free more ram
+persist.sys.purgeable_assets=1
+
+# More free ram and apps load faster
+dalvik.vm.dexopt-flags=m=y
+
+# More RAM
+persist.service.pcsync.enable=0
+persist.service.lgospd.enable=0
+
+# Increase general Performance
+debug.performance.tuning=1
+
+# Increase some Performance
+ro.secure=0
+persist.sys.use_16bpp_alpha=1
+ro.product.gpu.driver=1
+
+# Reduce the black screen time of the proximity sensor
+ro.lge.proximity.delay=15
+mot.proximity.delay=15
+ro.ril.enable.amr.wideband=1
+
+# Better Scrolling responsiveness and speed
+windowsmgr.max_events_per_sec=150
+ro.min_pointer_dur=8
+
+# Smoothens UI
+persist.service.lgospd.enable=0
+persist.service.pcsync.enable=0
+ro.ril.enable.a52=1
+ro.ril.enable.a53=0
+
+# Better call voice quality.
+ro.ril.enable.amr.wideband=1
+
+# Disable Bytecode Verification
+dalvik.vm.verify-bytecode=false
+dalvik.vm.dexopt-flags=m=y,v=n,o=v
+
+# Fix some application issues (FC)
+ro.kernel.android.checkjni=0
+
+# Miscellaneous Tweaks for performance
+ro.config.hw_menu_unlockscreen=false
+persist.sys.use_dithering=0
+persist.sys.purgeable_assets=1
+dalvik.vm.dexopt-flags=m=y
+ro.mot.eri.losalert.delay=1000
+
+# Smoother video streaming and tweak media
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=true
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+media.stagefright.enable-record=true
+
+# Support For IPV4 and IPV6
+persist.telephony.support.ipv6=1
+persist.telephony.support.ipv4=1
+ro.com.google.locationfeatures=1
+ro.com.google.networklocation=1
+
+# Wireless Tweaks
+wifi.supplicant_scan_interval=240
+
+# Video Acceleration Enabled And HW debugging
+video.accelerate.hw=1
+debug.sf.hw=1
+debug.performance.tuning=1
+debug.egl.profiler=1 
+debug.egl.hw=1
+debug.composition.type=gpu
+
+# art optimization
+dalvik.vm.image-dex2oat-filter=speed
+dalvik.vm.dex2oat-filter=speed
+dalvik.vm.dex2oat-Xmx=256m
