@@ -24,6 +24,10 @@ $(call inherit-product-if-exists, vendor/samsung/msm8916-common/msm8916-common-v
 
 LOCAL_PATH := device/samsung/msm8916-common
 
+# Google Play Store
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=196608
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -255,7 +259,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
     debug.hwui.use_buffer_age=false \
-    debug.sf.enable_gl_backpressure=1 \
+    debug.cpurend.vsync=false \
     debug.sf.latch_unsignaled=1
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
