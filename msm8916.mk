@@ -263,7 +263,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.latch_unsignaled=1
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
+    ro.surface_flinger.start_graphics_allocator_service=true
 
 # GPS Configs
 PRODUCT_COPY_FILES += \
@@ -377,6 +379,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.qcom_parser=3183219 \
     mm.enable.smoothstreaming=true \
     mmp.enable.3g2=true
+
+# Memory optimization
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.am.reschedule_service=true \
+    ro.vendor.qti.sys.fw.bservice_enable=true \
+    ro.lmk.medium=700 \
+    dalvik.vm.madvise-random=true
 
 # Misc
 PRODUCT_PACKAGES += \
@@ -572,6 +581,10 @@ PRODUCT_PACKAGES += \
     wificond \
     wpa_supplicant
 
+
+# Disable Scudo to save RAM.
+PRODUCT_DISABLE_SCUDO := true
+
 # ZRAM - Size in MB
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.zram.size=128
+    ro.config.zram.size=512
