@@ -23,6 +23,10 @@ TARGET_SPECIFIC_HEADER_PATH += $(COMMON_PATH)/include
 
 BUILD_BROKEN_DUP_RULES := true
 
+# APEX image
+DEXPREOPT_GENERATE_APEX_IMAGE := true
+TARGET_FLATTEN_APEX := true
+
 # Architecture/platform
 BOARD_VENDOR := samsung
 FORCE_32_BIT := true
