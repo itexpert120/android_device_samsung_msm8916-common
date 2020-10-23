@@ -560,3 +560,73 @@ case "$target" in
         echo $oem_version > /sys/devices/soc0/image_crm_version
         ;;
 esac
+
+sleep 3
+
+# Ram Fixes
+stop perfd
+echo '0' > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+echo '80' > /proc/sys/vm/overcommit_ratio
+echo '400' > /proc/sys/vm/vfs_cache_pressure
+echo '24300' > /proc/sys/vm/extra_free_kbytes
+echo '128' > /proc/sys/kernel/random/read_wakeup_threshold
+echo '256' > /proc/sys/kernel/random/write_wakeup_threshold
+echo '128' > /sys/block/mmcblk0/queue/read_ahead_kb
+echo "512" > /sys/block/mmcblk1/queue/read_ahead_kb
+echo '0' > /sys/block/mmcblk0/queue/iostats
+echo '1' > /sys/block/mmcblk0/queue/add_random
+echo '128' > /sys/block/mmcblk1/queue/read_ahead_kb
+echo '0' > /sys/block/mmcblk1/queue/iostats
+echo '1' > /sys/block/mmcblk1/queue/add_random
+echo '4096' > /proc/sys/vm/min_free_kbytes
+echo '0' > /proc/sys/vm/oom_kill_allocating_task
+echo '90' > /proc/sys/vm/dirty_ratio
+echo '70' > /proc/sys/vm/dirty_background_ratio
+
+sleep 3
+
+# Enable Limiter and Thermel
+echo "1" > /sys/kernel/msm_limiter/limiter_enabled
+echo "1" > /sys/kernel/msm_thermal/enabled
+
+sleep 3
+
+# fix cpu permissions
+chmod 644 /sys/devices/system/cpu/cpu0/online
+chmod 644 /sys/devices/system/cpu/cpu1/online
+chmod 644 /sys/devices/system/cpu/cpu2/online
+chmod 644 /sys/devices/system/cpu/cpu3/online
+
+sleep 3
+
+
+# Set Default Governor and Values
+echo "blu_active" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo "blu_active" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+echo "blu_active" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+echo "blu_active" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
+echo "19000 1248000:29000" > /sys/devices/system/cpu/cpufreq/blu_active/above_hispeed_delay
+echo "85" > /sys/devices/system/cpu/cpufreq/blu_active/go_hispeed_load
+echo "1248000" > /sys/devices/system/cpu/cpufreq/blu_active/hispeed_freq
+echo "85 1248000:80" > /sys/devices/system/cpu/cpufreq/blu_active/target_loads
+echo "30000" > /sys/devices/system/cpu/cpufreq/blu_active/timer_rate
+echo "60000" > /sys/devices/system/cpu/cpufreq/blu_active/timer_slack
+
+sleep 3
+
+#Fix suddenly reboot issue
+
+echo 1 > /sys/bus/cpu/devices/cpu0/core_ctl/min_cpus
+echo "0 0 0 0" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_down_thres
+echo "0 0 0 0" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_up_thres
+
+sleep 3
+
+echo "80 80 80 80" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_up_thres
+
+#cpu_freq
+
+sleep 3
+
+echo 1612000 >/sys/bus/cpu/devices/cpu0/cpufreq/scaling_max_freq
+echo 200000 >/sys/bus/cpu/devices/cpu0/cpufreq/scaling_min_freq
