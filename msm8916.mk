@@ -26,8 +26,7 @@ LOCAL_PATH := device/samsung/msm8916-common
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay
 
 # APEX
 PRODUCT_COPY_FILES += \
@@ -213,8 +212,9 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libtinyxml \
     libtinyxml2 \
-    memtrack.msm8916 \
-    vendor.lineage.livedisplay@2.0-service.samsung-qcom
+    memtrack.msm8916
+
+#   vendor.lineage.livedisplay@2.0-service.samsung-qcom
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -513,8 +513,8 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
 
 # Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineage.build.vendor_security_patch=2017-09-01
+# PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.lineage.build.vendor_security_patch=2017-09-01
 
 # Vibrator
 PRODUCT_PACKAGES += \
