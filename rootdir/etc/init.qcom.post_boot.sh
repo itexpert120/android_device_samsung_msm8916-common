@@ -229,12 +229,12 @@ case "$target" in
                 # enable thermal core_control now
                 echo 1 > /sys/module/msm_thermal/core_control/enabled
 
-                echo "25000 1152000:100000" > /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
-                echo 90 > /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+                echo "25000 1363200:30000 1401600:35000 1478400:50000" > /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+                echo 95 > /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
                 echo 20000 > /sys/devices/system/cpu/cpufreq/interactive/timer_rate
-                echo 1152000 > /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+                echo 1612800 > /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
                 echo 0 > /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
-                echo "1 200000:15 400000:25 533330:40 800000:60 998400:70 1094400:80" > /sys/devices/system/cpu/cpufreq/interactive/target_loads
+                echo "1 200000:15 400000:20 533330:35 800000:50 998400:60 1094400:70" > /sys/devices/system/cpu/cpufreq/interactive/target_loads
                 echo 50000 > /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
                 echo 50000 > /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis
 
@@ -583,13 +583,9 @@ echo '0' > /proc/sys/vm/oom_kill_allocating_task
 echo '90' > /proc/sys/vm/dirty_ratio
 echo '70' > /proc/sys/vm/dirty_background_ratio
 
-sleep 3
-
 # Enable Limiter and Thermel
 echo "1" > /sys/kernel/msm_limiter/limiter_enabled
 echo "1" > /sys/kernel/msm_thermal/enabled
-
-sleep 3
 
 # fix cpu permissions
 chmod 644 /sys/devices/system/cpu/cpu0/online
@@ -597,20 +593,11 @@ chmod 644 /sys/devices/system/cpu/cpu1/online
 chmod 644 /sys/devices/system/cpu/cpu2/online
 chmod 644 /sys/devices/system/cpu/cpu3/online
 
-sleep 3
-
-
 # Set Default Governor and Values
-echo "blu_active" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-echo "blu_active" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
-echo "blu_active" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
-echo "blu_active" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
-echo "19000 1248000:29000" > /sys/devices/system/cpu/cpufreq/blu_active/above_hispeed_delay
-echo "85" > /sys/devices/system/cpu/cpufreq/blu_active/go_hispeed_load
-echo "1248000" > /sys/devices/system/cpu/cpufreq/blu_active/hispeed_freq
-echo "85 1248000:80" > /sys/devices/system/cpu/cpufreq/blu_active/target_loads
-echo "30000" > /sys/devices/system/cpu/cpufreq/blu_active/timer_rate
-echo "60000" > /sys/devices/system/cpu/cpufreq/blu_active/timer_slack
+echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo "interactive" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+echo "interactive" > /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor
+echo "interactive" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
 
 sleep 3
 
@@ -619,14 +606,6 @@ sleep 3
 echo 1 > /sys/bus/cpu/devices/cpu0/core_ctl/min_cpus
 echo "0 0 0 0" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_down_thres
 echo "0 0 0 0" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_up_thres
-
-sleep 3
-
 echo "80 80 80 80" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_up_thres
-
-#cpu_freq
-
-sleep 3
-
 echo 1612000 >/sys/bus/cpu/devices/cpu0/cpufreq/scaling_max_freq
 echo 200000 >/sys/bus/cpu/devices/cpu0/cpufreq/scaling_min_freq

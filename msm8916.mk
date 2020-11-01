@@ -253,7 +253,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     debug.hwui.use_buffer_age=false
 
+# SF
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
     ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 
 # GPS Configs
@@ -308,6 +310,15 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.msm8916
+
+# LMKD
+PRODUCT_PROPERTY_OVERRIDES += \
+   ro.lmk.critical_upgrade=true \
+   ro.lmk.downgrade_pressure=60 \
+   ro.lmk.kill_heaviest_task=false \
+   ro.lmk.log_stats=true \
+   ro.lmk.upgrade_pressure=40 \
+   ro.lmk.use_psi=false
 
 # Media configurations
 ifneq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8929)

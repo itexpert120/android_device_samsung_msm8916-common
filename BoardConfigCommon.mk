@@ -21,7 +21,9 @@ TARGET_SPECIFIC_HEADER_PATH += $(COMMON_PATH)/include
 # Inherit from common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
 
+# Allow overriding commands during build
 BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_PHONY_TARGETS := true
 
 # APEX image
 DEXPREOPT_GENERATE_APEX_IMAGE := true
@@ -41,6 +43,9 @@ TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := cortex-a53
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+
+# Assert
+TARGET_OTA_ASSERT_DEVICE := gprimelte,gprimeltespr,gprimeltefnvzw,gprimeltezt,gprimeltexx,fortunalteub,fortuna3g,fortunave3g,SM-G530FZ,SM-G530H,SM-G530M,SM-G530MU,SM-S920L,SM-G530P,SM-G530T,SM-G530T1,SM-G530W,SM-G530,G530,fortunalteub,SM-G530F
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -66,9 +71,6 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
 BLUETOOTH_HCI_USE_MCT := true
 
-# Bootanimation
-TARGET_BOOTANIMATION_HALF_RES := true
-
 # Bootloader
 BOARD_PROVIDES_BOOTLOADER_MESSAGE := false
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
@@ -86,15 +88,13 @@ BOARD_CHARGER_SHOW_PERCENTAGE   := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 # Display
-TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
-TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x02000000U
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U | 0x02000000U
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_HAVE_NEW_GRALLOC := true
 TARGET_USES_GRALLOC1 := true
 SF_START_GRAPHICS_ALLOCATOR_SERVICE := true
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USE_COMPAT_GRALLOC_PERFORM := true
 TARGET_USES_C2D_COMPOSITION := true
 
@@ -141,6 +141,7 @@ BOARD_KERNEL_CMDLINE += \
 	msm_rtb.filter=0x3F \
 	ehci-hcd.park=3 \
 	androidboot.bootdevice=7824900.sdhci \
+	pm.sleep_mode=1 \
 	androidboot.selinux=permissive
 
 BOARD_CUSTOM_BOOTIMG := true
@@ -180,14 +181,14 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 15728640
 BOARD_CACHEIMAGE_PARTITION_SIZE     := 314572800
 BOARD_FLASH_BLOCK_SIZE              := 131072
 
-# APEX image
-DEXPREOPT_GENERATE_APEX_IMAGE := true
-
 # Legacy BLOB Support
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /system/bin/mediaserver=22 \
     /system/vendor/bin/mm-qcamera-daemon=22 \
     /system/vendor/bin/hw/rild=27
+
+# LMKD stats logging
+TARGET_LMKD_STATS_LOG := true
 
 # Power
 TARGET_USES_INTERACTION_BOOST := true
