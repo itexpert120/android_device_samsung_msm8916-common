@@ -563,6 +563,12 @@ esac
 
 sleep 3
 
+# IO
+echo 'zen' > /sys/block/mmcblk0/queue/scheduler
+
+# KSM
+echo 'full' > /sys/kernel/mm/uksm/cpu_governor
+
 # Ram Fixes
 stop perfd
 echo '0' > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
@@ -601,8 +607,20 @@ echo "interactive" > /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor
 
 sleep 3
 
-#Fix suddenly reboot issue
+# ZRAM
+echo '35' > /sys/module/zswap/parameters/max_pool_percent
 
+sleep 3
+
+# hotplug
+echo '1' /sys/module/msm_hotplug/msm_enabled
+echo '4' /sys/module/msm_hotplug/max_cpus_online
+echo '3' /sys/module/msm_hotplug/cpus_boosted
+echo '1' /sys/module/msm_hotplug/max_cpus_online_susp
+
+sleep 3
+
+#Fix suddenly reboot issue
 echo 1 > /sys/bus/cpu/devices/cpu0/core_ctl/min_cpus
 echo "0 0 0 0" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_down_thres
 echo "0 0 0 0" >/sys/bus/cpu/devices/cpu0/core_ctl/busy_up_thres
