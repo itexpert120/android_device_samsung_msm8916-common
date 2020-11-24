@@ -152,7 +152,7 @@ PRODUCT_PACKAGES += \
     libcamera_shim \
     libmm-qcamera \
     camera.msm8916 \
-    Camera2
+    Snap
 
 # Chipname
 ifeq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8929)
