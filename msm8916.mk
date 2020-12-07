@@ -296,6 +296,10 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0-java
 
+# init.d support
+PRODUCT_COPY_FILES += \
+    device/samsung/msm8916-common/etc/init.d/00tweaks:$(TARGET_COPY_OUT_SYSTEM)/etc/init.d/00tweaks
+
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/sec_touchkey.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/sec_touchkey.kl \
