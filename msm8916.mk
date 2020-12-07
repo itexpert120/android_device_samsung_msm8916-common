@@ -458,6 +458,7 @@ PRODUCT_PACKAGES += \
     init.qcom.uicc.sh \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
+    init.safailnet.rc \
     init.recovery.qcom.rc \
     twrp.fstab \
     ueventd.qcom.rc

@@ -28,6 +28,8 @@
 import /system/vendor/etc/init/hw/init.target.rc
 import /system/vendor/etc/init/hw/init.qcom.usb.rc
 
+import /system/vendor/etc/init/init.safailnet.rc
+
 on init
 
 on early-init
