@@ -133,6 +133,10 @@ TARGET_NO_RPC := true
 DEVICE_MANIFEST_FILE += $(COMMON_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(COMMON_PATH)/compatibility_matrix.xml
 
+# Fonts
+EXCLUDE_SERIF_FONTS := true
+SMALLER_FONT_FOOTPRINT := true
+
 # Kernel
 BOARD_KERNEL_CMDLINE += \
 	console=null \
