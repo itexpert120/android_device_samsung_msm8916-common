@@ -577,3 +577,7 @@ PRODUCT_PACKAGES += \
 # ZRAM - Size in MB
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.zram.size=512
+
+#RAM
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.low_ram=false
